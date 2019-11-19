@@ -1,0 +1,33 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-GB": {
+          "summary": "Learn fun facts about your local area.",
+          "examplePhrases": [
+            "Alexa open local facts",
+            "Alexa ask local facts for a fact",
+            "Alexa tell local facts to tell me information"
+          ],
+          "keywords": [
+            "local",
+            "facts",
+            "information"
+          ],
+          "name": "Local Facts",
+          "description": "Ask for facts about your local area! Make sure to enable location permissions for the skill to work."
+        }
+      },
+      "category": "KNOWLEDGE_AND_TRIVIA"
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom",
+          "uri": "ask-custom-Local-Facts-default"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}
