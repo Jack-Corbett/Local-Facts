@@ -1,12 +1,21 @@
 const Alexa = require('ask-sdk-core');
 
-// TODO: Add a launch handler
+const LaunchRequestHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === `LaunchRequest`;
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(welcomeMessage)
+      .reprompt(helpMessage)
+      .getResponse();
+  },
+};
 
 const GetNewFactHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    // If it is a launch request or they are asking for a fact handle it
-    return request.type === 'LaunchRequest' || (request.type === 'IntentRequest' && request.intent.name === 'GetNewFactIntent');
+    return request.type === 'IntentRequest' && request.intent.name === 'GetNewFactIntent';
   },
   handle(handlerInput) {
     console.log("Processing fact request");
@@ -89,6 +98,7 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
   .addRequestHandlers(
+    LaunchRequestHandler,
     GetNewFactHandler,
     HelpHandler,
     ExitHandler,
@@ -100,7 +110,7 @@ exports.handler = skillBuilder
 
 const skillName = 'Local Facts';
 
-const welcomeMessage = 'Welcome to local facts! You can say tell me a local fact to find out about your local area.';
+const welcomeMessage = 'Welcome to local facts! You can say "tell me a fact" to find out about your local area.';
 const helpMessage = 'You can say tell me a local fact, or, you can say exit... What can I help you with?';
 const helpReprompt = 'What can I help you with?';
 const fallbackMessage = 'The Local Facts skill can\'t help you with that. It can help you discover facts about your local area if you say tell me a local fact. What can I help you with?';
