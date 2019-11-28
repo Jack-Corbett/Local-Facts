@@ -5,11 +5,11 @@
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "e8ee274ae685b0db55a5649d7de01ff1"
+          "eTag": "e7299047f85662465a7417f1e8e4038b"
         },
         "interactionModel": {
           "en-GB": {
-            "eTag": "f281b629c79d110a4205c9644ba9ec54"
+            "eTag": "ce93fad22ffa48cf36fe4533189db410"
           }
         },
         "lambda": [
@@ -22,7 +22,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-Local-Facts-default",
             "handler": "index.handler",
-            "revisionId": "e73d4113-771f-456c-83cf-35bc79684157",
+            "revisionId": "6bf69c0f-8b19-4d2b-b5c1-1e70fec6da01",
             "runtime": "nodejs8.10"
           }
         ]
