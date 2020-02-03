@@ -37,14 +37,22 @@ const GetNewFactHandler = {
 
       console.log('Address successfully retrieved, now responding to user.');
 
-      // Get a random fact based on the user's county
+      // Fetch the users counts
       const county = address.stateOrRegion;
-      //const randomFact = facts[county][Math.floor(Math.random()*5)];
+      var response = "";
+
+      if (county && facts.hasOwnProperty(county)) {
+        // Get a random fact based on the user's county
+        response = facts[county][Math.floor(Math.random()*5)];
+      } else {
+        // Otherwise advise the user to check their device location in the app
+        response = messages.COUNTY_ERROR;
+      }
       
       return responseBuilder
-        .speak("County: " + county)
+        .speak(response + " County: " + county)
         .reprompt(messages.HELP_REPROMPT)
-        .withSimpleCard(skillName, "")//randomFact)
+        .withSimpleCard(skillName, response)
         .getResponse();
     } catch (error) {
       if (error.name !== 'ServiceError') {
@@ -289,6 +297,7 @@ const messages = {
   NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Amazon Alexa app to find out facts about your local area. Then start local facts again.',
   LOCATION_FAILURE: 'There was a problem getting your address, please try again later.',
   ERROR: 'Sorry, an error occurred.',
+  COUNTY_ERROR: 'I couldn\'t find any facts for your area. Make sure your device location is set in the Alexa app.',
   STOP: 'Goodbye!',
 }
 
