@@ -28,18 +28,16 @@ const GetNewFactHandler = {
       return responseBuilder
         .speak(messages.NOTIFY_MISSING_PERMISSIONS)
         .withAskForPermissionsConsentCard(PERMISSIONS)
-        .getResponse();
-    } 
+    }
     try {
       const { deviceId } = requestEnvelope.context.System.device;
       const deviceAddressServiceClient = serviceClientFactory.getDeviceAddressServiceClient();
       const address = await deviceAddressServiceClient.getFullAddress(deviceId);
+      console.log(address);
 
-      console.log('Address successfully retrieved, now responding to user.');
-
-      // Fetch the users counts
+      // Fetch the users county so we can fetch relevant facts
       var county = address.stateOrRegion;
-      // Expand shortened county names or convert them
+      // Expand shortened county names or convert them to match the fact dataset
       if (county === 'Hants') county = 'Hampshire';
       if (county === 'West Sussex' || county === 'East Sussex') county = 'Sussex';
       if (county === 'Greater London') county = 'London';
@@ -47,7 +45,6 @@ const GetNewFactHandler = {
       if (county === 'North Yorkshire' || county === 'South Yorkshire' || county === 'West Yorkshire') county = 'Yorkshire';
 
       var response = '';
-
       if (county && FACTS.hasOwnProperty(county)) {
         // Get a random fact based on the user's county
         response = FACTS[county][Math.floor(Math.random()*5)];
@@ -57,10 +54,9 @@ const GetNewFactHandler = {
       }
       
       return responseBuilder
-        .speak(response + ' County: ' + county)
+        .speak(response)
         .reprompt(messages.HELP_REPROMPT)
         .withSimpleCard(skillName, response)
-        .getResponse();
     } catch (error) {
       if (error.name !== 'ServiceError') {
         return responseBuilder 
@@ -427,16 +423,16 @@ const FACTS = {
 const skillName = 'Local Facts';
 
 const messages = {
-  WELCOME: 'Welcome to local facts!',
+  WELCOME: 'Welcome to Local Facts!',
   HELP: 'You can say tell me a local fact, or, you can say exit... What can I help you with?',
   HELP_REPROMPT: 'What can I help you with?',
   FALLBACK: 'The Local Facts skill can\'t help you with that. It can help you discover facts about your local area if you say tell me a local fact.',
   FALLBACK_REPROMPT: 'What can I help you with?',
-  NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Amazon Alexa app to find out facts about your local area. Then start local facts again.',
-  LOCATION_FAILURE: 'There was a problem getting your address, please try again later.',
-  ERROR: 'Sorry, an error occurred.',
+  NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Alexa app to find out facts about your local area. Then start local facts again.',
+  LOCATION_FAILURE: 'There was a problem fetching your address, please try again later.',
+  ERROR: 'Sorry, an error occurred when fetching you a fact.',
   COUNTY_ERROR: 'I couldn\'t find any facts for your area. Make sure your device location is set in the Alexa app.',
-  STOP: 'Goodbye!',
+  STOP: 'Thank you for using Local Facts!',
 }
 
 const skillBuilder = Alexa.SkillBuilders.custom();
