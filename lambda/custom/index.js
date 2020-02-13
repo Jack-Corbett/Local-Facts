@@ -1,6 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const PERMISSIONS = ['read::alexa:device:all:address'];
 
+// Start a session
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === `LaunchRequest`;
@@ -13,6 +14,7 @@ const LaunchRequestHandler = {
   },
 };
 
+// Tell the user a local fact based on their address
 const GetNewFactHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope
@@ -28,7 +30,9 @@ const GetNewFactHandler = {
       return responseBuilder
         .speak(messages.NOTIFY_MISSING_PERMISSIONS)
         .withAskForPermissionsConsentCard(PERMISSIONS)
-    }
+        .withShouldEndSession(true)
+        .getResponse();
+    } 
     try {
       const { deviceId } = requestEnvelope.context.System.device;
       const deviceAddressServiceClient = serviceClientFactory.getDeviceAddressServiceClient();
@@ -50,13 +54,13 @@ const GetNewFactHandler = {
         response = FACTS[county][Math.floor(Math.random()*5)];
       } else {
         // Otherwise advise the user to check their device location in the app
-        response = messages.COUNTY_ERROR;
+        response = messages.FACT_ERROR;
       }
       
       return responseBuilder
         .speak(response)
-        .reprompt(messages.HELP_REPROMPT)
         .withSimpleCard(skillName, response)
+        .getResponse();
     } catch (error) {
       if (error.name !== 'ServiceError') {
         return responseBuilder 
@@ -69,6 +73,7 @@ const GetNewFactHandler = {
   },
 };
 
+// Help the user understand what the skill is for
 const HelpHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope
@@ -82,6 +87,7 @@ const HelpHandler = {
   },
 };
 
+// Tell the user local facts can't help with that
 const FallbackHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope
@@ -95,6 +101,7 @@ const FallbackHandler = {
   },
 };
 
+// Exit the skill
 const ExitHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope
@@ -107,6 +114,7 @@ const ExitHandler = {
   },
 };
 
+// Log session end
 const SessionEndedRequestHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope
@@ -118,6 +126,7 @@ const SessionEndedRequestHandler = {
   },
 };
 
+// Handle specific address fetching errors
 const GetAddressError = {
   canHandle(handlerInput, error) {
     return error.name === 'ServiceError';
@@ -136,6 +145,7 @@ const GetAddressError = {
   },
 };
 
+// Handle generic errors
 const ErrorHandler = {
   canHandle() {
     return true;
@@ -145,7 +155,6 @@ const ErrorHandler = {
     console.log(`Error stack: ${error.stack}`);
     return handlerInput.responseBuilder
       .speak(messages.ERROR)
-      .reprompt(messages.ERROR)
       .getResponse();
   },
 };
@@ -424,14 +433,14 @@ const skillName = 'Local Facts';
 
 const messages = {
   WELCOME: 'Welcome to Local Facts!',
-  HELP: 'You can say tell me a local fact, or, you can say exit... What can I help you with?',
-  HELP_REPROMPT: 'What can I help you with?',
-  FALLBACK: 'The Local Facts skill can\'t help you with that. It can help you discover facts about your local area if you say tell me a local fact.',
-  FALLBACK_REPROMPT: 'What can I help you with?',
-  NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Alexa app to find out facts about your local area. Then start local facts again.',
+  HELP: 'You can say tell me a fact, or you can say exit.',
+  HELP_REPROMPT: 'Ask me to tell you a fact.',
+  FALLBACK: 'Local Facts can\'t help you with that. It can help you discover facts about your local area if you say: tell me a fact.',
+  FALLBACK_REPROMPT: 'To learn a fact about your local area say: tell me a fact.',
+  NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Alexa app to find out facts about your local area. Then try again.',
   LOCATION_FAILURE: 'There was a problem fetching your address, please try again later.',
   ERROR: 'Sorry, an error occurred when fetching you a fact.',
-  COUNTY_ERROR: 'I couldn\'t find any facts for your area. Make sure your device location is set in the Alexa app.',
+  FACT_ERROR: 'I couldn\'t find any facts for your area. Make sure your device location is set in the Alexa app.',
   STOP: 'Thank you for using Local Facts!',
 }
 
@@ -446,6 +455,6 @@ exports.handler = skillBuilder
     FallbackHandler,
     SessionEndedRequestHandler,
   )
-  .addErrorHandlers(ErrorHandler, GetAddressError)
+  .addErrorHandlers(GetAddressError, ErrorHandler)
   .withApiClient(new Alexa.DefaultApiClient())
   .lambda();

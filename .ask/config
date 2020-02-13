@@ -9,7 +9,7 @@
         },
         "interactionModel": {
           "en-GB": {
-            "eTag": "a8561571601c0890c3b923280292aea2"
+            "eTag": "0b490681fe3082fb2d7bf0280326429b"
           }
         },
         "lambda": [
@@ -22,7 +22,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-Local-Facts-default",
             "handler": "index.handler",
-            "revisionId": "a41a3861-ca66-4439-9a2f-bb826e52cdaa",
+            "revisionId": "e648f265-82b5-49bb-8505-0b1b58d00b8f",
             "runtime": "nodejs10.x"
           }
         ]
