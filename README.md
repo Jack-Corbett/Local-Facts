@@ -1,2 +1,2 @@
 # Local-Facts
-A malicious Alexa skill for harvesting user data (for educational use)
+A malicious Alexa skill for harvesting a user's address by using the Alexa Data API (for educational use)
