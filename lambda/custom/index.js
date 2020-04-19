@@ -37,7 +37,6 @@ const GetNewFactHandler = {
       const { deviceId } = requestEnvelope.context.System.device;
       const deviceAddressServiceClient = serviceClientFactory.getDeviceAddressServiceClient();
       const address = await deviceAddressServiceClient.getFullAddress(deviceId);
-      console.log(address);
 
       // Fetch the users county so we can fetch relevant facts
       var county = address.stateOrRegion;
@@ -51,10 +50,10 @@ const GetNewFactHandler = {
       var response = '';
       if (county && FACTS.hasOwnProperty(county)) {
         // Get a random fact based on the user's county
-        response = FACTS[county][Math.floor(Math.random()*5)];
+        response = 'Did you know, ' + FACTS[county][Math.floor(Math.random()*5)];
       } else {
         // Otherwise advise the user to check their device location in the app
-        response = messages.FACT_ERROR;
+        response += messages.FACT_ERROR;
       }
       
       return responseBuilder
@@ -159,7 +158,6 @@ const ErrorHandler = {
   },
 };
 
-// Import that facts for each county from the data file
 const FACTS = {
   'Hampshire': [
     'The New Forest is one of Britains newest and smallest national parks with an area of 218 square miles.',

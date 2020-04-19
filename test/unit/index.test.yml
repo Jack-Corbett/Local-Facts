@@ -5,10 +5,10 @@
 #  /___/_/\_\/_/_/_/   /_/  \__/___/\__/_/_//_/\_, /
 #                                             /___/
 #
-# Created by Bespoken
+# Created by Bespoken, Updated by Jack Corbett
 # Learn more at https://read.bespoken.io/unit-testing/getting-started/
 #
-# Skill name: "Space Facts" by Amazon
+# Skill name: "Local Facts"
 # Test scope: LaunchRequest, GetNewFactIntent, AMAZON.HelpIntent, AMAZON.StopIntent, AMAZON.CancelIntent,
 #             AMAZON.FallbackIntent
 # Description: General test suite for all intents
@@ -16,31 +16,31 @@
 
 ---
 configuration:
-  locale: en-US
+  locale: en-UK
 
 ---
 - test: Launch request, no further interaction.
 - LaunchRequest: # LaunchRequest is not an utterance but a request type and reserved word
-  - response.outputSpeech.ssml: Here's your fact
+  - response.outputSpeech.ssml: Welcome to Local Facts!
   - response.card.type: Simple
-  - response.card.title: Space Facts
+  - response.card.title: Local Facts
   - response.card.content: "*" # Any text will match
 
 ---
 - test: GetNewFactIntent direct call
 - GetNewFactIntent:
-  - response.outputSpeech.ssml: Here's your fact
+  - response.outputSpeech.ssml: Did you know
   - response.card.type: Simple
-  - response.card.title: Space Facts
+  - response.card.title: Local Facts
   - response.card.content: "*" # Quotes need to be used when the response starts with a star
 
 ---
 - test: AMAZON.HelpIntent. Ask for help and exit.
 - LaunchRequest # Empty expected part means we are not testing the response
 - AMAZON.HelpIntent:
-  - response.outputSpeech.ssml: You can say tell me a space fact, or, you can say exit... What can I help you with?
+  - response.outputSpeech.ssml: You can say tell me a fact, or you can say exit.
   - response.card: undefined
-  - response.reprompt.outputSpeech.ssml: What can I help you with?
+  - response.reprompt.outputSpeech.ssml: Ask me to tell you a fact.
 - SessionEndedRequest: # This is equivalent to say 'exit'
   - response.outputSpeech: undefined
 
@@ -48,28 +48,28 @@ configuration:
 - test: AMAZON.HelpIntent. Ask for help and stop.
 - LaunchRequest
 - AMAZON.HelpIntent # We have already tested this in previous sequence, no need to repeat it
-- AMAZON.StopIntent: Goodbye! # We can test only the expected outputSpeech like this
+- AMAZON.StopIntent: Thank you for using Local Facts! # We can test only the expected outputSpeech like this
 
 ---
 - test: AMAZON.HelpIntent. Ask for help and then for a fact.
 - LaunchRequest
 - AMAZON.HelpIntent
-- GetNewFactIntent: /here's your fact.*/i # Regular expression; i flag means case insensitive
+- GetNewFactIntent: /Did you know.*/i # Regular expression; i flag means case insensitive
 
 ---
 - test: AMAZON.StopIntent
 - LaunchRequest
-- AMAZON.StopIntent: Goodbye!
+- AMAZON.StopIntent: Thank you for using Local Facts!
 
 ---
 - test: AMAZON.CancelIntent
 - LaunchRequest
-- AMAZON.CancelIntent: Goodbye!
+- AMAZON.CancelIntent: Thank you for using Local Facts!
 
 ---
 - test: AMAZON.FallbackIntent
 - LaunchRequest
 - AMAZON.FallbackIntent:
-  - prompt: The Space Facts skill can't help you with that # prompt is equivalent to response.outputSpeech.ssml
-  - reprompt: What can I help you with? # reprompt is equivalent to response.reprompt.outputSpeech.ssml
+  - prompt: "Local Facts can\'t help you with that. It can help you discover facts about your local area if you say: tell me a fact." # prompt is equivalent to response.outputSpeech.ssml
+  - reprompt: "To learn a fact about your local area say: tell me a fact." # reprompt is equivalent to response.reprompt.outputSpeech.ssml
   - response.shouldEndSession: false

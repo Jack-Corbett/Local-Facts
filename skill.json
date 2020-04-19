@@ -15,7 +15,7 @@
             "information"
           ],
           "name": "Local Facts",
-          "description": "Ask for facts about your local area! Make sure to enable location permissions for the skill to work."
+          "description": "Ask for facts about your local area based on your UK county!"
         }
       },
       "category": "KNOWLEDGE_AND_TRIVIA"
