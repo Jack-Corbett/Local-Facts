@@ -4,6 +4,9 @@
       "locales": {
         "en-GB": {
           "summary": "Learn fun facts about your local area.",
+          "description": "Ask for facts about your local area based on your UK county!",
+          "smallIconUri": "https://raw.githubusercontent.com/Jack-Corbett/Local-Facts/master/Small%20Icon.png",
+          "largeIconUri": "https://raw.githubusercontent.com/Jack-Corbett/Local-Facts/master/Large%20Icon.png",
           "examplePhrases": [
             "Alexa open local facts",
             "Alexa ask local facts for a fact",
@@ -14,12 +17,35 @@
             "facts",
             "information"
           ],
-          "name": "Local Facts",
-          "description": "Ask for facts about your local area based on your UK county!"
+          "name": "Local Facts"
         }
       },
+      "distributionCountries": [
+        "GB"
+      ],
+      "isAvailableWorldwide": false,
+      "distributionMode": "PUBLIC",
+      "testingInstructions": "The Skill only has one custom intent which fetches a fact based on the county in the user's address fetched from the API. Therefore to test the functionality your address needs to be in the UK Local Facts only has facts for UK counties.",
       "category": "KNOWLEDGE_AND_TRIVIA"
     },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "en-GB": {
+          "privacyPolicyUrl": "https://github.com/Jack-Corbett/Local-Facts/blob/master/Privacy%20Policy.md",
+          "termsOfUseUrl": ""
+        }
+      }
+    },
+    "permissions": [
+      {
+        "name": "alexa::devices:all:address:full:read"
+      }
+    ],
     "apis": {
       "custom": {
         "endpoint": {
@@ -28,11 +54,6 @@
         }
       }
     },
-    "manifestVersion": "1.0",
-    "permissions": [
-      {
-        "name": "alexa::devices:all:address:full:read"
-      }
-    ]
+    "manifestVersion": "1.0"
   }
 }

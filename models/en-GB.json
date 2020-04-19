@@ -36,8 +36,7 @@
             "give me some local information",
             "tell me something",
             "give me something"
-          ],
-          "slots": []
+          ]
         }
       ]
     }
