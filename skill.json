@@ -3,7 +3,7 @@
     "publishingInformation": {
       "locales": {
         "en-GB": {
-          "summary": "Learn fun facts about your local area.",
+          "summary": "Learn fun and interesting facts about your local area.",
           "description": "Learn fun and interesting facts about your local area based on your county! Currently I only know facts about counties in England but I'm always learning!",
           "smallIconUri": "https://raw.githubusercontent.com/Jack-Corbett/Local-Facts/master/Small%20Icon.png",
           "largeIconUri": "https://raw.githubusercontent.com/Jack-Corbett/Local-Facts/master/Large%20Icon.png",

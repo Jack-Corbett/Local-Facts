@@ -21,7 +21,7 @@ configuration:
 ---
 - test: Launch request, no further interaction.
 - LaunchRequest: # LaunchRequest is not an utterance but a request type and reserved word
-  - response.outputSpeech.ssml: Welcome to Local Facts!
+  - response.outputSpeech.ssml: Welcome to Local Facts! Say, tell me a fact, to learn a fact about your local area.
   - response.card.type: Simple
   - response.card.title: Local Facts
   - response.card.content: "*" # Any text will match
@@ -40,7 +40,7 @@ configuration:
 - AMAZON.HelpIntent:
   - response.outputSpeech.ssml: You can say tell me a fact, or you can say exit.
   - response.card: undefined
-  - response.reprompt.outputSpeech.ssml: Ask me to tell you a fact.
+  - response.reprompt.outputSpeech.ssml: Ask me to tell you a fact to find out about your local area.
 - SessionEndedRequest: # This is equivalent to say 'exit'
   - response.outputSpeech: undefined
 
@@ -48,7 +48,7 @@ configuration:
 - test: AMAZON.HelpIntent. Ask for help and stop.
 - LaunchRequest
 - AMAZON.HelpIntent # We have already tested this in previous sequence, no need to repeat it
-- AMAZON.StopIntent: Thank you for using Local Facts! # We can test only the expected outputSpeech like this
+- AMAZON.StopIntent: Thank you for using Local Facts! Goodbye # We can test only the expected outputSpeech like this
 
 ---
 - test: AMAZON.HelpIntent. Ask for help and then for a fact.
@@ -59,12 +59,12 @@ configuration:
 ---
 - test: AMAZON.StopIntent
 - LaunchRequest
-- AMAZON.StopIntent: Thank you for using Local Facts!
+- AMAZON.StopIntent: Thank you for using Local Facts! Goodbye
 
 ---
 - test: AMAZON.CancelIntent
 - LaunchRequest
-- AMAZON.CancelIntent: Thank you for using Local Facts!
+- AMAZON.CancelIntent: Thank you for using Local Facts! Goodbye
 
 ---
 - test: AMAZON.FallbackIntent
