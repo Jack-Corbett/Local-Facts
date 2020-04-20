@@ -30,9 +30,8 @@ const GetNewFactHandler = {
       return responseBuilder
         .speak(messages.NOTIFY_MISSING_PERMISSIONS)
         .withAskForPermissionsConsentCard(PERMISSIONS)
-        .withShouldEndSession(true)
         .getResponse();
-    } 
+    }
     try {
       const { deviceId } = requestEnvelope.context.System.device;
       const deviceAddressServiceClient = serviceClientFactory.getDeviceAddressServiceClient();
@@ -41,30 +40,49 @@ const GetNewFactHandler = {
       // Fetch the users county so we can fetch relevant facts
       var county = address.stateOrRegion;
       // Expand shortened county names or convert them to match the fact dataset
+      if (county === 'Beds') county = 'Bedfordshire';
+      if (county === 'Berks') county = 'Berkshire';
+      if (county === 'Bucks') county = 'Buckinghamshire';
+      if (county === 'Cambds') county = 'Cambridgeshire';
+      if (county === 'Derbys') county = 'Derbyshire';
+      if (county === 'Gloucs') county = 'Gloucestershire';
       if (county === 'Hants') county = 'Hampshire';
+      if (county === 'Herefords') county = 'Herefordshire';
+      if (county === 'Lancs') county = 'Lancashire';
+      if (county === 'Lincs') county = 'Lincolnshire';
+      if (county === 'Middx') county = 'Middlesex';
+      if (county === 'Northants') county = 'Northamptonshire';
+      if (county === 'Notts') county = 'Nottinghamshire';
+      if (county === 'Oxon') county = 'Oxfordshire';
+      if (county === 'Salop') county = 'Shropshire';
+      if (county === 'Staffs') county - 'Staffordshire';
       if (county === 'West Sussex' || county === 'East Sussex') county = 'Sussex';
+      if (county === 'Warwicks') county = 'Warwickshire';
+      if (county === 'Wilts') county = 'Wiltshire';
+      if (county === 'Worcs') county = 'Worcestershire';
+      if (county === 'Yorks') county = 'Yorkshire';
       if (county === 'Greater London') county = 'London';
       if (county === 'Greater Manchester') county = 'Manchester';
       if (county === 'North Yorkshire' || county === 'South Yorkshire' || county === 'West Yorkshire') county = 'Yorkshire';
 
-      var response = '';
       if (county && FACTS.hasOwnProperty(county)) {
         // Get a random fact based on the user's county
-        response = 'Did you know, ' + FACTS[county][Math.floor(Math.random()*5)];
-      } else {
-        // Otherwise advise the user to check their device location in the app
-        response += messages.FACT_ERROR;
-      }
-      
-      return responseBuilder
+        var response = 'Did you know, ' + FACTS[county][Math.floor(Math.random()*5)] + '. You can ask for another fact to discover more about your local area, or you can say stop.';
+        return responseBuilder
         .speak(response)
+        .reprompt(messages.HELP)
         .withSimpleCard(skillName, response)
         .getResponse();
+      }
+      // Otherwise advise the user to check their device location in the app
+      return responseBuilder
+      .speak(messages.FACT_ERROR)
+      .getResponse();
     } catch (error) {
       if (error.name !== 'ServiceError') {
+        console.log(error);
         return responseBuilder 
           .speak(messages.ERROR)
-          .reprompt(messages.ERROR)
           .getResponse();
       }
       throw error;
@@ -430,16 +448,16 @@ const FACTS = {
 const skillName = 'Local Facts';
 
 const messages = {
-  WELCOME: 'Welcome to Local Facts!',
-  HELP: 'You can say tell me a fact, or you can say exit.',
-  HELP_REPROMPT: 'Ask me to tell you a fact.',
+  WELCOME: 'Welcome to Local Facts! Say, tell me a fact, to learn a fact about your local area.',
+  HELP: 'You can say tell me a fact, or you can say stop.',
+  HELP_REPROMPT: 'Ask me to tell you a fact to find out about your local area.',
   FALLBACK: 'Local Facts can\'t help you with that. It can help you discover facts about your local area if you say: tell me a fact.',
   FALLBACK_REPROMPT: 'To learn a fact about your local area say: tell me a fact.',
   NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Alexa app to find out facts about your local area. Then try again.',
-  LOCATION_FAILURE: 'There was a problem fetching your address, please try again later.',
-  ERROR: 'Sorry, an error occurred when fetching you a fact.',
-  FACT_ERROR: 'I couldn\'t find any facts for your area. Make sure your device location is set in the Alexa app.',
-  STOP: 'Thank you for using Local Facts!',
+  LOCATION_FAILURE: 'Sorry, there was a problem fetching your address.',
+  ERROR: 'Sorry, there seems to be a problem, I couldn\'t fetch you a fact.',
+  FACT_ERROR: 'Sorry, I couldn\'t find any facts for your area, at the moment I only know facts about counties in England. Make sure your device location is correct in the Alexa app and the county name is included under State Province or Region.',
+  STOP: 'Thank you for using Local Facts! Goodbye',
 }
 
 const skillBuilder = Alexa.SkillBuilders.custom();
