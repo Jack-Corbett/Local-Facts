@@ -456,7 +456,7 @@ const messages = {
   NOTIFY_MISSING_PERMISSIONS: 'Please enable address permissions in the Alexa app to find out facts about your local area. Then try again.',
   LOCATION_FAILURE: 'Sorry, there was a problem fetching your address.',
   ERROR: 'Sorry, there seems to be a problem, I couldn\'t fetch you a fact.',
-  FACT_ERROR: 'Sorry, I couldn\'t find any facts for your area, at the moment I only know facts about counties in England. Make sure your device location is correct in the Alexa app and the county name is included under State Province or Region.',
+  FACT_ERROR: 'Sorry, I couldn\'t find any facts for your area, at the moment I only know facts about counties in England. Make sure your device location is correct in the Alexa app and the county name is included under State Province or Region. You can find it under settings, device settings, then pick your device and then select device location.',
   STOP: 'Thank you for using Local Facts! Goodbye',
 }
 
