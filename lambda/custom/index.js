@@ -67,7 +67,7 @@ const GetNewFactHandler = {
 
       if (county && FACTS.hasOwnProperty(county)) {
         // Get a random fact based on the user's county
-        var response = 'Did you know, ' + FACTS[county][Math.floor(Math.random()*5)] + '. You can ask for another fact to discover more about your local area, or you can say stop.';
+        var response = 'Did you know, ' + FACTS[county][Math.floor(Math.random()*5)] + ' You can ask for another fact to discover more about your local area, or you can say stop.';
         return responseBuilder
         .speak(response)
         .reprompt(messages.HELP)
@@ -208,7 +208,7 @@ const FACTS = {
   'Cambridgeshire': [
     'Lord Byron kept a bear in his rooms when he was a student at Trinity College. Apparently he was annoyed by the rule that students were not allowed to keep dogs at the university.',
     'Oliver Cromwell’s head is buried in Cambridge in a secret location.',
-    'The university library has over 29 million books and receives a free copy of every book published in the UK',
+    'The university library has over 29 million books and receives a free copy of every book published in the UK.',
     'The first official football game using the ‘Cambridge Rules’ was played on Parker’s Piece in 1848 – this formed the basis of the Football Association’s rules drawn up in 1863.',
     'In 1958, Cambridge engineering students managed to get an Austin Seven car on the roof of Senate House. It took the university a week to remove it.'
   ],
@@ -251,7 +251,7 @@ const FACTS = {
     'The Jurassic coast was the first-ever natural site to make the UNESCO World Heritage list in December 2001.',
     'Enid Blyton loved to spend time in Dorset as a child, and those fond childhood memories were the source of inspiration for her famous book “Five”.',
     'Dorset Naga Chillis are known as one of the world’s hottest Chillis.',
-    'Fossil lover Mary Anning’s life and work was the inspiration behind the well-known tongue-twister “she sells sea shells on the seashore”',
+    'Fossil lover Mary Anning’s life and work was the inspiration behind the well-known tongue-twister “she sells sea shells on the seashore”.',
     'The oldest post box in England can be found on the streets of Holwell, a quaint village and it is still in use today.'
   ],
   'Durham': [
@@ -262,11 +262,11 @@ const FACTS = {
     'In 1909 an amateur football team from West Auckland won the first World Cup, beating FC Winterthour of Switzerland.'
   ],
   'Sussex': [
-    'The historic battle of Hastings didn’t even take place in Hastings – it took place about six miles up the road at Senlac Hill',
+    'The historic battle of Hastings didn’t even take place in Hastings – it took place about six miles up the road at Senlac Hill.',
     'Paul McCartney received an honorary degree from the University of Sussex in 1988.',
     'Brighton Marina is the largest marina in Europe. It covers an area of 127 acres – 35 of which is land.',
     'A few world records have been set in Worthing, including the longest most consecutive rounds of kickboxing, the longest football marathon, and the heaviest fig ever grown, weighing 295 grams.',
-    'Eastbourne is the 28th largest town without city status'
+    'Eastbourne is the 28th largest town without city status.'
   ],
   'Essex': [
     'Essex is home to Britain\'s oldest recorded town, Colchester. It was the first Roman capital in Britain.',
@@ -297,7 +297,7 @@ const FACTS = {
     'The first turnpike road in Britain was a section of the Great North Road.'
   ],
   'Kent': [
-    'The world\’s oldest horse fossil was found at Studd Hill, Herne Bay in 1838 and has recently been dated as 54 million years old',
+    'The world\’s oldest horse fossil was found at Studd Hill, Herne Bay in 1838 and has recently been dated as 54 million years old.',
     'John Buchan wrote The 39 Steps while bedridden in Kent. Suffering from stomach ulcers, he wrote his famed novel to distract himself from the excruciating pain.',
     'Leeds Castle is known as the ‘Ladies’ Castle’ because so many future Queens of England have resided within its protective walls.',
     'Comedy giants Laurel and Hardy opened The Romney, Hythe & Dymchurch Railway in 1947.',
@@ -306,7 +306,7 @@ const FACTS = {
   'Lancashire': [
     'The first KFC in the UK opened in Preston in 1965, for Valentine\'s Day in 2016 they offered a table service.',
     'The first motorway in the UK was built around Preston and opened in 1958.',
-    'Sea Life Blackpool was home to a record breaking crab. "Big Daddy" held the record for the "longest leg on a crab" which measured 1.43 metres',
+    'Sea Life Blackpool was home to a record breaking crab. "Big Daddy" held the record for the "longest leg on a crab" which measured 1.43 metres.',
     'Blackburn was the first town in the UK to take on mass fingerprinting following the murder of June Anne Devaney in May 1948.',
     'When it opened the Big One rollercoaster in Blackpool was the largest and steepest in the world. It held this title until 1996.'
   ],
@@ -336,7 +336,7 @@ const FACTS = {
     'Liverpool holds the Guinness Book of Records for being the Capital of Pop – more Liverpool artists have had a number one hit than any other town or city.',
     'The Grand National which is hosted at Aintree is watched by 600 million people worldwide.',
     'The clock faces on the Liver Building are the biggest in the country.',
-    'On December 21st 1913, Arthur Wynne, a journalist from Liverpool, published a “word-cross” puzzle in the New York World' 
+    'On December 21st 1913, Arthur Wynne, a journalist from Liverpool, published a “word-cross” puzzle in the New York World.' 
   ],
   'Norfolk': [
     'Norfolk has 659 medieval churches, the highest concentration in the world.',
@@ -377,7 +377,7 @@ const FACTS = {
     'Shropshire doesn\'t contain a single city.',
     'The Ditherington Flax Mill in Shrewsbury was the first iron-framed building in the entire world, giving it the title the grandfather of all skyscrapers.',
     'Shropshire is home to the British Hedgehog Preservation Society. Founded in 1982 the Society offers help and advice to those with sick, injured or orphaned hedgehogs.',
-    'Newport in Shropshire recorded the coldest temperature ever in England on 10th January 1982: minus 26 degrees centigrade',
+    'Newport in Shropshire recorded the coldest temperature ever in England on 10th January 1982: minus 26 degrees centigrade.',
     'Shrewsbury boasts the tallest town crier in the world, at 7ft 2in, and now also has the tallest MP in the United Kingdom: Daniel Kawczynski is 6ft 8.5in tall.'
   ],
   'Somerset': [
@@ -390,8 +390,8 @@ const FACTS = {
   'Staffordshire': [
     'There are more miles of canals in Staffordshire than any other county in England.',
     'An Annual Conker Tournament is held at The Red Lion, in Boundary near Cheadle every October.',
-    'Prince\'s Park in Burntwood is listed in the Guinness Book of Records as the smallest park in the UK',
-    'The largest ever haul of Anglo-Saxon gold in Britain was discovered beneath a farmers field in Staffordshire?',
+    'Prince\'s Park in Burntwood is listed in the Guinness Book of Records as the smallest park in the UK.',
+    'The largest ever haul of Anglo-Saxon gold in Britain was discovered beneath a farmers field in Staffordshire.',
     'The first jar of Marmite was produced in Staffordshire. It was German scientist, Justus Von Liebig, who realised that the beer by-product could be bottled and eaten.'
   ],
   'Suffolk': [
