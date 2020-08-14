@@ -27,4 +27,4 @@ Local Facts will not rent or sell potentially personally-identifying and persona
 
 Although most changes are likely to be minor, Local Facts may change its Privacy Policy from time to time, and in Local Fact's sole discretion. Local Fact's encourages visitors to frequently check this page for any changes to its Privacy Policy. Your continued use of this skill after any change in this Privacy Policy will constitute your acceptance of such change.
 
-A big thank you to [Automattic](https://automattic.com) for providing this privacy policy template under [Creative Commmons](https://creativecommons.org/licenses/by-sa/4.0/).
+Thank you to [Automattic](https://automattic.com) for providing this privacy policy template under [Creative Commmons](https://creativecommons.org/licenses/by-sa/4.0/).
