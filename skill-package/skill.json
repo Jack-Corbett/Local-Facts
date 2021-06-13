@@ -1,0 +1,58 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-GB": {
+          "summary": "Learn fun and interesting facts about your local area!",
+          "examplePhrases": [
+            "Alexa open local facts",
+            "Alexa ask local facts for a fact",
+            "Alexa tell local facts to tell me a fact"
+          ],
+          "keywords": [
+            "local",
+            "facts",
+            "information"
+          ],
+          "name": "Local Facts",
+          "description": "Learn fun and interesting facts about your local area based on your county! Currently, I only know facts about counties in England but I'm always learning! Make sure you include your county in your device address under State/Province/Region before starting the Skill.",
+          "smallIconUri": "file://assets/images/en-GB_smallIconUri.png",
+          "largeIconUri": "file://assets/images/en-GB_largeIconUri.png"
+        }
+      },
+      "isAvailableWorldwide": false,
+      "testingInstructions": "The Skill has one custom intent which fetches a fact based on the county in the device location fetched from the API. Therefore to test the functionality your device location needs to be in England and the county (eg: Hampshire) must be included under State/Province/Region. For example: 58 French Street, Southampton, Hampshire, SO14 2AT | 300 Oxford Street, London, London, W1C 1DX | Tower Street, York, Yorkshire, YO1 9SA. As explained in the error message, the Skill will only work if the state/province/region is provided, in England this is known as a county.",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionMode": "PUBLIC",
+      "distributionCountries": [
+        "GB"
+      ]
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:499295336600:function:ask-custom-Local-Facts-default"
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "alexa::devices:all:address:full:read"
+      }
+    ],
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-GB": {
+          "termsOfUseUrl": "",
+          "privacyPolicyUrl": "https://github.com/Jack-Corbett/Local-Facts/blob/master/Privacy%20Policy.md"
+        }
+      },
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}

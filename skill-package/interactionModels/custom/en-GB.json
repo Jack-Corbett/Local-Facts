@@ -1,0 +1,49 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "local facts",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNewFactIntent",
+          "samples": [
+            "a fact",
+            "a local fact",
+            "tell me a fact",
+            "tell me a local fact",
+            "give me a fact",
+            "give me a local fact",
+            "tell me trivia",
+            "tell me some local trivia",
+            "give me trivia",
+            "give me some local trivia",
+            "give me some information",
+            "give me some local information",
+            "tell me something",
+            "give me something"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ]
+    }
+  },
+  "version": "62"
+}
