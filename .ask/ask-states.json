@@ -4,11 +4,11 @@
     "default": {
       "skillId": "amzn1.ask.skill.0be77b5c-d641-4f8b-bba8-ae3ba4e72642",
       "skillMetadata": {
-        "lastDeployHash": "cMCaOnD1pXS0kJh7Bp1wb7ysm54="
+        "lastDeployHash": "Hi9WolGOfUB9pb9Avr7Z09sAFNQ="
       },
       "code": {
         "default": {
-          "lastDeployHash": "58sk7j8A7T8jVniBSsVztk0Qo5k="
+          "lastDeployHash": "ETkYwv0reqOg0XClzzaYbqMfg9U="
         }
       },
       "skillInfrastructure": {
@@ -17,8 +17,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-east-1:499295336600:function:ask-custom-Local-Facts-default",
-                "lastModified": "2021-06-13T12:10:17.657+0000",
-                "revisionId": "1b33b9b8-63b3-461f-9d4d-e716ea05e305"
+                "lastModified": "2022-03-08T19:45:54.000+0000",
+                "revisionId": "40200e60-d879-46d9-a601-9ae2b2f77033"
               },
               "iamRole": "arn:aws:iam::499295336600:role/ask-lambda-local-facts"
             }

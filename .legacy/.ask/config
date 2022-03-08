@@ -23,7 +23,7 @@
             "functionName": "ask-custom-Local-Facts-default",
             "handler": "index.handler",
             "revisionId": "5c2fa701-2374-44ae-8e4f-1007f7034807",
-            "runtime": "nodejs10.x"
+            "runtime": "nodejs17.x"
           }
         ]
       }
